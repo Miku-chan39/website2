@@ -27,11 +27,13 @@ def home():
     ip = get_ip()
     if is_local_ip(ip):
         return "You have a local ip, baka"
-
-    with maxminddb.open_database("geolite2-city-ipv4.mmdb") as reader:
+    db_path = "geolite2-city-ipv4.mmdb"
+    if ":" in ip:
+        db_path = "geolite2-city-ipv6.mmdb"
+    with maxminddb.open_database(db_path) as reader:
         city = reader.get(ip)
 
-    with maxminddb.open_database("geolite2-asn-ipv4.mmdb") as reader:
+    with maxminddb.open_database("geolite2-asn.mmdb") as reader:
         asn = reader.get(ip)
     if city is None or asn is None:
         return "Congrat, something is broken, somehow your ip is not in the database"
