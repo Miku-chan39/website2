@@ -2,7 +2,8 @@ services:
   app:
     # Build the image from the Dockerfile in the current directory
     build: .
-
+    ports:
+      - "5000:33246"
     restart: unless-stopped
     develop:
       # Create a `watch` configuration to update the app

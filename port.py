@@ -19,5 +19,5 @@ def port():
     port = random.randint(start, end)
 
     if accept_html():
-        return f"A random port from range {start}~{end}: {port} (set range by ?s=[start]&e=[end])"
+        return f'A random port from range {start}~{end} (set range by ?s=[start]&e=[end]) : <p style="color:red">{port}</p> '
     return port
